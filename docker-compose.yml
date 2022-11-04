@@ -8,7 +8,8 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "1234"
-      TZ: "Asia/Seoul"
+      POSTGRES_DB: postgres
+      # TZ: "Asia/Seoul"
     ports:
       - 5000:5432
   
@@ -16,10 +17,18 @@ services:
     container_name: "django"
     build: . 
     ports:
-      - 8888:8000
+      - 8888:8888
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8888 --timeout=300 --capture-output --log-level debug
+
     environment:
       TZ: "Asia/Seoul"
     volumes:
       -  /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
+    depends_on:
+      - migration
+
+  migration:
+    build: .
+    command: python manage.py migrate
     depends_on:
       - postgres

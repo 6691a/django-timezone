@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8e3h7byw(+6#p0#&lf3aj%gpsv43tb7$^5@v))p9i*jumptx)#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -46,7 +46,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -78,13 +78,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        "ENGINE": "django.db.backends.sqlite3",
+        "ENGINE":'django.db.backends.postgresql',
         "NAME": "postgres",
+        "USER": "postgres",
         "PASSWORD":"1234",
-        "HOST": "localhost",
-        "PORT": "5000",
+        "HOST": "postgres",
+        "PORT": 5432,
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         "ENGINE":'django.db.backends.postgresql',
+#         "NAME": "postgres",
+#         "USER": "postgres",
+#         "PASSWORD":"1234",
+#         "HOST": "localhost",
+#         "PORT": 5000,
+#     }
+# }
 
 
 # Password validation
@@ -109,18 +121,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-# LANGUAGE_CODE = 'en-us'
-
-# TIME_ZONE = 'UTC'
-
-# USE_I18N = True
-
-# USE_TZ = True
-
-
 LANGUAGE_CODE = "ko-KR"
 
-TIME_ZONE = "Asia/Seoul"
+# TIME_ZONE = "Asia/Seoul"
+TIME_ZONE = "UTC"
+
 
 USE_I18N = True
 
