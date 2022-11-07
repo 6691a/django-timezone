@@ -9,7 +9,9 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "1234"
       POSTGRES_DB: postgres
-      # TZ: "Asia/Seoul"
+      TZ: "Asia/Seoul"
+    volumes:
+      - ./data:/var/lib/postgresql/data
     ports:
       - 5000:5432
   
@@ -20,10 +22,6 @@ services:
       - 8888:8888
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8888 --timeout=300 --capture-output --log-level debug
 
-    environment:
-      TZ: "Asia/Seoul"
-    volumes:
-      -  /usr/share/zoneinfo/Asia/Seoul:/etc/localtime:ro
     depends_on:
       - migration
 

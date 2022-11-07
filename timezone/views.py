@@ -16,3 +16,4 @@ class TimezoneAPIView(APIView):
     def post(self, request):
         Timezone.objects.create()
         return Response(status=201)
+
