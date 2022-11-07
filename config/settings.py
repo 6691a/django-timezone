@@ -123,9 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "ko-KR"
 
-# TIME_ZONE = "Asia/Seoul"
-TIME_ZONE = "UTC"
-
+TIME_ZONE = "Asia/Seoul"
 
 USE_I18N = True
 
@@ -149,5 +147,21 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny'
     ],
     # 'DATETIME_FORMAT': "%Y-%m-%dT%H:%M:%S.%fZ",
+}
 
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+    }
 }

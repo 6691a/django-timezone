@@ -9,7 +9,7 @@ COPY . .
 
 
 RUN apk update \
-    && apk add bash
+    && apk add bash tzdata 
 
 RUN pip install --upgrade pip
 
